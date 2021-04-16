@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:fitness/MusicPlayer/music_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_query/flutter_audio_query.dart';
-// import 'package:music_player/music_player.dart';
 
 class Tracks extends StatefulWidget {
   static String id = 'Tracks';
@@ -23,7 +22,7 @@ class _TracksState extends State<Tracks> {
   void getTracks() async {
     songs = await audioQuery.getSongs();
     setState(
-          () {
+      () {
         songs = songs;
       },
     );
@@ -48,7 +47,6 @@ class _TracksState extends State<Tracks> {
       appBar: AppBar(
         backgroundColor: Color(0xFF1D343C),
         elevation: 0,
-        leading: Icon(Icons.music_note, color: Colors.white),
         title: Text('Music List', style: TextStyle(color: Colors.white)),
       ),
       body: ListView.separated(
@@ -57,18 +55,31 @@ class _TracksState extends State<Tracks> {
         itemBuilder: (context, index) => ListTile(
           leading: CircleAvatar(
             backgroundImage: songs[index].albumArtwork == null
-                ? AssetImage('assets/images/music_gradient.jpg')
+                ? AssetImage('ImageAsset/musicplayer.png')
                 : FileImage(
-              File(songs[index].albumArtwork),
+                    File(songs[index].albumArtwork),
+                  ),
+          ),
+          title: Text(
+            songs[index].title,
+            style: TextStyle(
+              color: Colors.white,
             ),
           ),
-          title: Text(songs[index].title),
-          subtitle: Text(songs[index].artist),
+          subtitle: Text(
+            songs[index].artist,
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
           onTap: () {
             currentIndex = index;
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => MusicPlayer(changeTrack: changeTrack, songInfo: songs[currentIndex], key: key),
+                builder: (context) => MusicPlayer(
+                    changeTrack: changeTrack,
+                    songInfo: songs[currentIndex],
+                    key: key),
               ),
             );
           },

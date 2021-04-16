@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_query/flutter_audio_query.dart';
 import 'package:just_audio/just_audio.dart';
@@ -22,6 +23,7 @@ class MusicPlayerState extends State<MusicPlayer> {
     super.initState();
     setSong(widget.songInfo);
   }
+
   void dispose() {
     super.dispose();
     player?.dispose();
@@ -63,7 +65,7 @@ class MusicPlayerState extends State<MusicPlayer> {
     return [duration.inMinutes, duration.inSeconds]
         .map(
           (element) => element.remainder(60).toString().padLeft(2, '0'),
-    )
+        )
         .join(':');
   }
 
@@ -80,109 +82,120 @@ class MusicPlayerState extends State<MusicPlayer> {
             icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.white)),
         title: Text('Now Playing', style: TextStyle(color: Colors.white)),
       ),
-      body: Container(
-        margin: EdgeInsets.fromLTRB(5, 57, 5, 0),
-        child: Column(children: <Widget>[
-          CircleAvatar(
-            backgroundImage: widget.songInfo.albumArtwork == null
-                ? AssetImage('assets/images/music_gradient.jpg')
-                : FileImage(File(widget.songInfo.albumArtwork)),
-            radius: 75,
-          ),
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-            child: Text(
-              widget.songInfo.title,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 33),
-            child: Text(
-              widget.songInfo.artist,
-              style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w500),
-            ),
-          ),
-          Slider(
-            inactiveColor: Colors.black12,
-            activeColor: Color(0xFF8B63E6),
-            min: minimumValue,
-            max: maximumValue,
-            value: currentValue,
-            onChanged: (value) {
-              currentValue = value;
-              player.seek(
-                Duration(
-                  milliseconds: currentValue.round(),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.fromLTRB(5, 100, 5, 0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+              CircleAvatar(
+                backgroundImage: widget.songInfo.albumArtwork == null
+                    ? AssetImage('ImageAsset/musicplayer.png')
+                    : FileImage(File(widget.songInfo.albumArtwork)),
+                radius: 80,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                child: Text(
+                  widget.songInfo.title,
+                  style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w600),
                 ),
-              );
-            },
-          ),
-          Container(
-            transform: Matrix4.translationValues(0, -15, 0),
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  currentTime,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 33),
+                child: Text(
+                  widget.songInfo.artist,
                   style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 12.5,
+                      fontSize: 12.0,
                       fontWeight: FontWeight.w500),
                 ),
-                Text(
-                  endTime,
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12.5,
-                      fontWeight: FontWeight.w500),
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [],
                 ),
-              ],
-            ),
+              ),
+              Slider(
+                inactiveColor: Colors.black12,
+                activeColor: Color(0xFF8B63E6),
+                min: minimumValue,
+                max: maximumValue,
+                value: currentValue,
+                onChanged: (value) {
+                  currentValue = value;
+                  player.seek(
+                    Duration(
+                      milliseconds: currentValue.round(),
+                    ),
+                  );
+                },
+              ),
+              Container(
+                transform: Matrix4.translationValues(0, -15, 0),
+                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      currentTime,
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      endTime,
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+              ),
+                  Container(
+                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GestureDetector(
+                        child: Icon(Icons.skip_previous,
+                            color: Colors.white, size: 55),
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          widget.changeTrack(false);
+                        },
+                      ),
+                      GestureDetector(
+                        child: Icon(
+                            isPlaying
+                                ? Icons.pause_circle_filled_rounded
+                                : Icons.play_circle_fill_rounded,
+                            color: Color(0xFF8B63E6),
+                            size: 85),
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          changeStatus();
+                        },
+                      ),
+                      GestureDetector(
+                        child: Icon(Icons.skip_next, color: Colors.white, size: 55),
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          widget.changeTrack(true);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+            ]),
           ),
-          Container(
-            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                GestureDetector(
-                  child:
-                  Icon(Icons.skip_previous, color: Colors.white, size: 55),
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    widget.changeTrack(false);
-                  },
-                ),
-                GestureDetector(
-                  child: Icon(
-                      isPlaying
-                          ? Icons.pause_circle_filled_rounded
-                          : Icons.play_circle_fill_rounded,
-                      color: Color(0xFF8B63E6),
-                      size: 85),
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    changeStatus();
-                  },
-                ),
-                GestureDetector(
-                  child: Icon(Icons.skip_next, color: Colors.white, size: 55),
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    widget.changeTrack(true);
-                  },
-                ),
-              ],
-            ),
-          ),
-        ]),
       ),
     );
   }

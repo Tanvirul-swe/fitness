@@ -1,4 +1,5 @@
 import 'package:fitness/HomePageUI/dietTips.dart';
+import 'package:fitness/HomePageUI/dietTipsDetails.dart';
 import 'package:fitness/MusicPlayer/tracks.dart';
 import 'package:fitness/NavigationBar/navigationBar.dart';
 import 'package:fitness/UI/ageScreen.dart';
@@ -33,8 +34,9 @@ class MyApp extends StatelessWidget {
             CategoryScreen.id:(context)=>CategoryScreen(),
             NavigationBar.id:(context)=>NavigationBar(),
              HomeScreen.id:(context)=>HomeScreen(),
-            MusicApp.id:(context)=>MusicApp(),
              Tracks.id:(context)=>Tracks(),
+             DietTips.id:(context)=>DietTips(),
+              DietTipsDetails.id:(context)=>DietTipsDetails(),
       },
     );
   }
