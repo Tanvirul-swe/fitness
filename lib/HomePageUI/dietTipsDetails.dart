@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:fitness/ConstantValue/dietPlanDetails.dart';
 
 class DietTipsDetails extends StatelessWidget {
   static String id = 'DietTipsDetails';
@@ -46,6 +47,7 @@ class DietTipsDetails extends StatelessWidget {
               ),
             ),
             Container(
+              padding: EdgeInsets.all(20.0),
               height: MediaQuery.of(context).size.height / 1.5,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -60,7 +62,88 @@ class DietTipsDetails extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      'Instructions',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '$brackfast',
+                      style: TextStyle(
+                        color: Color(0xFF1D343C),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '$details_of_brackfast',
+                      style: TextStyle(
+                        color: Color(0xFF8F92A1),
+                        height: 1.5,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      'Lunch(700 Calories)',
+                      style: TextStyle(
+                        color: Color(0xFF1D343C),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      'Staying low, take a slow, lateral step to the right. Keep your toes pointed forward and stay low. Extend the left knee, driving your weight to the right, flexing the knee and hip into a side lunge. Maintain good posture through the entire spine, keeping your head and chest up.',
+                      style: TextStyle(
+                        color: Color(0xFF8F92A1),
+                        fontSize: 15.0,
+                        height: 1.5,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      'Dinner(300 Calories)',
+                      style: TextStyle(
+                        color: Color(0xFF1D343C),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Staying low, take a slow, lateral step to the right. Keep your toes pointed forward and stay low. Extend the left knee, driving your weight to the right, flexing the knee and hip into a side lunge. Maintain good posture through the entire spine, keeping your head and chest up.',
+                      style: TextStyle(
+                        color: Color(0xFF8F92A1),
+                        fontSize: 15.0,
+                        height: 1.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

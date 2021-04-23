@@ -1,5 +1,8 @@
+import 'package:fitness/ActivityTracker/activity_tracker.dart';
+import 'package:fitness/DietCalculator/dietCalculator.dart';
 import 'package:fitness/HomePageUI/dietTips.dart';
 import 'package:fitness/HomePageUI/dietTipsDetails.dart';
+import 'package:fitness/Location/location.dart';
 import 'package:fitness/MusicPlayer/tracks.dart';
 import 'package:fitness/NavigationBar/navigationBar.dart';
 import 'package:fitness/UI/ageScreen.dart';
@@ -23,20 +26,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-         initialRoute: WelcomeScreen.id,
+      initialRoute: WelcomeScreen.id,
       routes: {
-            WelcomeScreen.id:(context)=>WelcomeScreen(),
-            LoginScreen.id:(context)=>LoginScreen(),
-            Registration.id:(context)=>Registration(),
-            GenderScreen.id:(context)=>GenderScreen(),
-            AgeScreen.id:(context)=>AgeScreen(),
-            WeightHeight.id:(context)=>WeightHeight(),
-            CategoryScreen.id:(context)=>CategoryScreen(),
-            NavigationBar.id:(context)=>NavigationBar(),
-             HomeScreen.id:(context)=>HomeScreen(),
-             Tracks.id:(context)=>Tracks(),
-             DietTips.id:(context)=>DietTips(),
-              DietTipsDetails.id:(context)=>DietTipsDetails(),
+        WelcomeScreen.id: (context) => WelcomeScreen(),
+        LoginScreen.id: (context) => LoginScreen(),
+        Registration.id: (context) => Registration(),
+        GenderScreen.id: (context) => GenderScreen(),
+        AgeScreen.id: (context) => AgeScreen(),
+        WeightHeight.id: (context) => WeightHeight(),
+        CategoryScreen.id: (context) => CategoryScreen(),
+        NavigationBar.id: (context) => NavigationBar(),
+        HomeScreen.id: (context) => HomeScreen(),
+        Tracks.id: (context) => Tracks(),
+        DietTips.id: (context) => DietTips(),
+        DietTipsDetails.id: (context) => DietTipsDetails(),
+        Location.id: (context) => Location(),
+        ActivityTracker.id: (context) => ActivityTracker(),
+        DietCalculator.id: (context) => DietCalculator(),
       },
     );
   }

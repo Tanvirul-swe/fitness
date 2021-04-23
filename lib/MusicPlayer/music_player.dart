@@ -101,7 +101,7 @@ class MusicPlayerState extends State<MusicPlayer> {
                   widget.songInfo.title,
                   style: TextStyle(
                       color: Colors.white70,
-                      fontSize: 14.0,
+                      fontSize: 20.0,
                       fontWeight: FontWeight.w600),
                 ),
               ),
@@ -111,7 +111,7 @@ class MusicPlayerState extends State<MusicPlayer> {
                   widget.songInfo.artist,
                   style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 12.0,
+                      fontSize: 16.0,
                       fontWeight: FontWeight.w500),
                 ),
               ),
