@@ -2,6 +2,9 @@ import 'package:fitness/UI/homeScreen.dart';
 import 'package:fitness/UI/registrationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness/NavigationBar/navigationBar.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:page_transition/page_transition.dart';
+
 
 class LoginScreen extends StatefulWidget {
   static String id = 'LoginScreen';
@@ -46,13 +49,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Row(
                           children: [
-                            Text(
-                              'Welcome back',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.green,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            AnimatedTextKit(
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  'Welcome back',
+                                  textStyle: const TextStyle(
+                                    fontSize: 20.0,
+                                   color: Colors.green,
+                                  ),
+                                  speed: const Duration(milliseconds: 150),
+                                ),
+                              ],
+
+                              totalRepeatCount: 4,
+                              pause: const Duration(milliseconds: 1000),
+                              displayFullTextOnTap: true,
+                              stopPauseOnTap: true,
                             ),
                           ],
                         ),
@@ -79,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         RaisedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, NavigationBar.id);
+                            Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: NavigationBar()));
                           },
                           child: Text(
                             'Login',

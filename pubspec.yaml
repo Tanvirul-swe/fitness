@@ -34,7 +34,8 @@ dependencies:
   geolocator: ^6.2.1
   provider: ^4.3.3
   http: ^0.13.1
-
+  page_transition: ^1.1.7+6
+  animated_text_kit: ^4.2.0
 
 
 

@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness/UI/profile.dart';
 import 'package:fitness/NavigationBar/navigationBar.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:fitness/Location/location.dart';
 
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final double itemHeight = (size.height - kToolbarHeight - 24) / 5;
     final double itemWidth = size.width / padding;
     return Scaffold(
+
       body: SafeArea(
         child: Column(
           children: [
@@ -139,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.pushNamed(context, DietCalculator.id);
+                          Navigator.push(context, PageTransition(type: PageTransitionType.bottomToTop, child: DietCalculator()));
                         },
                       ),
                       InkWell(
@@ -182,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.pushNamed(context, DietTips.id);
+                          Navigator.push(context, PageTransition(type: PageTransitionType.bottomToTop, child: DietTips()));
                         },
                       ),
                       InkWell(
@@ -306,12 +308,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.pushNamed(context, Tracks.id);
+                          Navigator.push(context, PageTransition(type: PageTransitionType.bottomToTop, child: Tracks()));
+
                         },
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, Location.id);
+                          Navigator.push(context, PageTransition(type: PageTransitionType.bottomToTop, child: Location()));
+
                         },
                         child: Container(
                           padding: const EdgeInsets.all(15),

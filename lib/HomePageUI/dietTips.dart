@@ -1,5 +1,6 @@
 import 'package:fitness/HomePageUI/dietTipsDetails.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 class DietTips extends StatefulWidget {
   static String id = 'DietTips';
@@ -90,7 +91,8 @@ class _DietTipsState extends State<DietTips> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, DietTipsDetails.id);
+                          Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: DietTipsDetails()));
+
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width,

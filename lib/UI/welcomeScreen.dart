@@ -1,5 +1,6 @@
 import 'package:fitness/UI/loginScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'WelcomeScreen';
@@ -39,7 +40,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   RaisedButton(
                     color: Color(0xFF8abdcf),
                     onPressed: () {
-                      Navigator.pushNamed(context, LoginScreen.id);
+                      Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: LoginScreen()));
                     },
                     child: Text(
                       'Login',
