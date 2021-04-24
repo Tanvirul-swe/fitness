@@ -14,7 +14,7 @@ import 'UI/registrationScreen.dart';
 import 'UI/height_and_weight_screen.dart';
 import 'UI/category.dart';
 import 'UI/homeScreen.dart';
-import 'UI/profile.dart';
+
 
 void main() {
   runApp(MyApp());
