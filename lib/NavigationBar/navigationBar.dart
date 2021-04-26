@@ -40,9 +40,10 @@ class _NavigationBarState extends State<NavigationBar> {
             icon: Icon(Icons.person),
             label: 'Profile',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.work_outline_sharp),
-          label: 'Work',
-          )
+          BottomNavigationBarItem(icon: Icon(Icons.notifications),
+          label: 'Notification',
+          ),
+
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],

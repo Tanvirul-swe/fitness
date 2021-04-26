@@ -2,6 +2,7 @@ import 'package:fitness/DietCalculator/dietCalculator.dart';
 import 'package:fitness/HomePageUI/dietTips.dart';
 import 'package:fitness/HomePageUI/dietTipsDetails.dart';
 import 'package:fitness/MusicPlayer/tracks.dart';
+import 'package:fitness/NavigatorDrawer/MainDrawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness/UI/profile.dart';
@@ -9,6 +10,7 @@ import 'package:fitness/NavigationBar/navigationBar.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:fitness/Location/location.dart';
+import 'package:fitness/NavigatorDrawer/MainDrawer.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = 'HomeScreen';
@@ -31,11 +33,23 @@ class _HomeScreenState extends State<HomeScreen> {
     final double itemHeight = (size.height - kToolbarHeight - 24) / 5;
     final double itemWidth = size.width / padding;
     return Scaffold(
-
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(45.0),
+        child: AppBar(
+          elevation: 5,
+          backgroundColor: Colors.black12,
+          title: Text('Home'),
+        ),
+      ),
+      drawer: Theme(
+        data: Theme.of(context).copyWith(canvasColor: Colors.white),
+        child: MainDrawer(),
+      ),
       body: SafeArea(
         child: Column(
           children: [
             Container(
+              height: MediaQuery.of(context).size.height/4.25,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('ImageAsset/sixpack.jpg'),
@@ -49,27 +63,28 @@ class _HomeScreenState extends State<HomeScreen> {
               // height: MediaQuery.of(context).size.height / 3.5,
               // width: MediaQuery.of(context).size.width,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                            icon: Icon(Icons.menu, color: Colors.white),
-                            onPressed: () {
-                              //Do something when clicked menu button.
-                            }),
-                        IconButton(
-                            icon:
-                                Icon(Icons.notifications, color: Colors.white),
-                            onPressed: () {
-                              //Do something when clicked notification button.
-                            }),
-                      ],
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(20.0),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       IconButton(
+                  //           icon: Icon(Icons.menu, color: Colors.white),
+                  //           onPressed: () {
+                  //             //Do something when clicked menu button.
+                  //           }),
+                  //       IconButton(
+                  //           icon:
+                  //               Icon(Icons.notifications, color: Colors.white),
+                  //           onPressed: () {
+                  //             //Do something when clicked notification button.
+                  //           }),
+                  //     ],
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
@@ -141,7 +156,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.push(context, PageTransition(type: PageTransitionType.bottomToTop, child: DietCalculator()));
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.bottomToTop,
+                                  child: DietCalculator()));
                         },
                       ),
                       InkWell(
@@ -184,7 +203,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.push(context, PageTransition(type: PageTransitionType.bottomToTop, child: DietTips()));
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.bottomToTop,
+                                  child: DietTips()));
                         },
                       ),
                       InkWell(
@@ -308,14 +331,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.push(context, PageTransition(type: PageTransitionType.bottomToTop, child: Tracks()));
-
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.bottomToTop,
+                                  child: Tracks()));
                         },
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(context, PageTransition(type: PageTransitionType.bottomToTop, child: Location()));
-
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.bottomToTop,
+                                  child: Location()));
                         },
                         child: Container(
                           padding: const EdgeInsets.all(15),

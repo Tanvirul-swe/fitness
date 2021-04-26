@@ -8,6 +8,9 @@ class DietTips extends StatefulWidget {
   _DietTipsState createState() => _DietTipsState();
 }
 
+ScrollController controller = ScrollController();
+bool closeTopContainer = false;
+
 class _DietTipsState extends State<DietTips> {
   List calories = [
     "1500 Kcal",
@@ -27,40 +30,57 @@ class _DietTipsState extends State<DietTips> {
   ];
   int index;
   @override
+  void initState() {
+    controller.addListener(() {
+      setState(() {
+        closeTopContainer = controller.offset > 50;
+      });
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height / 3,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20.0),
-                    bottomRight: Radius.circular(20.0)),
-                image: DecorationImage(
-                  image: AssetImage('ImageAsset/food1.jpg'),
-                  fit: BoxFit.cover,
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              alignment: Alignment.topCenter,
+              width: size.width,
+              height: closeTopContainer ? 0 : size.height * 0.30,
+              child: Container(
+                height: MediaQuery.of(context).size.height / 3,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0)),
+                  image: DecorationImage(
+                    image: AssetImage('ImageAsset/food1.jpg'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    InkWell(
-                      onTap: (){
-                        Navigator.pop(context);
-                      },
+                child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
                         child: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                      size: 35.0,
-                    ),
-                    ),
-                  ],
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                          size: 35.0,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -79,6 +99,7 @@ class _DietTipsState extends State<DietTips> {
                   ],
                 ),
                 child: ListView.builder(
+                  controller: controller,
                   itemCount: 6,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, index) => Container(
@@ -91,8 +112,11 @@ class _DietTipsState extends State<DietTips> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: DietTipsDetails()));
-
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: DietTipsDetails()));
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width,

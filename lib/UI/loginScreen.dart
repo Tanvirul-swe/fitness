@@ -11,10 +11,11 @@ class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
-
 class _LoginScreenState extends State<LoginScreen> {
+
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -22,7 +23,13 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Image.asset('ImageAsset/workout.jpg'),
+            Container(
+              child: Column(
+                children: [
+                  Image.asset('ImageAsset/workout.jpg'),
+                ],
+              ),
+            ),
             Expanded(
               child: Container(
                 height: 500,
