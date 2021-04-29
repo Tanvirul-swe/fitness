@@ -20,7 +20,7 @@ class MainDrawer extends StatelessWidget {
           ),
           new ListTile(
               leading: Icon(Icons.library_music),
-              title: new Text("Music"),
+              title: new Text("Musics"),
               onTap: () {
                 Navigator.pop(context);
               }),

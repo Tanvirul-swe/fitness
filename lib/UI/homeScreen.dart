@@ -1,3 +1,4 @@
+import 'package:fitness/ActivityTracker/activity_tracker.dart';
 import 'package:fitness/DietCalculator/dietCalculator.dart';
 import 'package:fitness/HomePageUI/dietTips.dart';
 import 'package:fitness/HomePageUI/dietTipsDetails.dart';
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         preferredSize: Size.fromHeight(45.0),
         child: AppBar(
           elevation: 5,
-          backgroundColor: Colors.black12,
+          backgroundColor: Colors.brown,
           title: Text('Home'),
         ),
       ),
@@ -253,42 +254,47 @@ class _HomeScreenState extends State<HomeScreen> {
                           //Do something
                         },
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black,
-                              blurRadius: 8.0,
-                              spreadRadius: 1.0,
-                              offset: Offset(
-                                  2.0, 2.0), // shadow direction: bottom right
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: Color(0xFFEF9F95),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Icon(
-                              Icons.track_changes,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Activity\nTracker',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
+                      InkWell(
+                        onTap: (){
+                          Navigator.pushNamed(context, ActivityTracker.id);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black,
+                                blurRadius: 8.0,
+                                spreadRadius: 1.0,
+                                offset: Offset(
+                                    2.0, 2.0), // shadow direction: bottom right
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: Color(0xFFEF9F95),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Icon(
+                                Icons.track_changes,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Activity\nTracker',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       InkWell(
